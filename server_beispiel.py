@@ -9,6 +9,8 @@
                 Für die Verwendung im Netzwerk der Dienst auf der entsprechenden Netzwerkkarte angeboten werden
                 Die Verbindung kann durch das senden des String AB beendet werden. Der Server läuft weiter.
 
+                Der Server kann vom Client durch senden Stop beendet werden
+
 '''
 
 import socket
@@ -36,11 +38,15 @@ def server_starten():
         schnittstelle, addr = netzwerkschnittstelle.accept()
 
         # das soll der Server tun
+        stop_server=False
+
         with schnittstelle:
             schnittstelle.send(str.encode("Willkommen auf der Wetterstation! \n"))
             print("Verbunden wurde mit: ", str(addr[0]) + ":" + str(addr[1]) + " hergestellt!" )
             while True:
-                daten_empfangen = schnittstelle.recv(2048)
+                anfrage_empfangen = schnittstelle.recv(2048)
+                '''
+                # wenn der Server über Telnet angesprochen wird
                 try:
                     daten_senden = "Antwort des Servers: " + daten_empfangen.decode('utf-8')
 
@@ -51,19 +57,36 @@ def server_starten():
                     break
 
                 schnittstelle.sendall(str.encode(daten_senden))
+                '''
 
-                abbruch = str(daten_empfangen.decode('utf-8'))
+                anfrage = str(anfrage_empfangen.decode('utf-8'))
+
+                # Daten senden wenn danach gefragt wird
+                if anfrage[0:5] =='DATEN':
+                    schnittstelle.sendall(str.encode(" Hier sind die Daten"))
+                    
                 # Abruch wenn AB gesendet wird vom client
-                if abbruch[0:2] == 'AB':
+                if anfrage[0:2] == 'AB':
                     print("Verbindung wurde durch die Aufforderung des Client geschlosssen!")
+                    schnittstelle.sendall(str.encode("Ende"))
+                    break
+
+                if anfrage[0:4]== "Stop":
+                    stop_server=True
                     break
             # Schleifenende
 
             schnittstelle.close()
+            return stop_server
 
 if __name__ == "__main__":
-    try:
-        server_starten()
-    except KeyboardInterrupt as e:
-        print("\tDas Programm wurde beendet." + str(e))
-        sys.exit()
+    while True:
+        try:
+            stop=server_starten()
+            if stop == True:
+                print("Server wurde vom client gestoppt")
+                # Break beendet die Whileschleife
+                break
+        except KeyboardInterrupt as e:
+            print("\tDas Programm wurde beendet." + str(e))
+            sys.exit()

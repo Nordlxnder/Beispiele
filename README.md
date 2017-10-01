@@ -13,7 +13,7 @@ Beispiel für die Verwendung von socket:
 
 
 
-    Das Clientbeispiel  (client_beispiel.py)zeigt die Möglichkeit
+    Das Clientbeispiel (client_beispiel.py) zeigt die Möglichkeit
      - zum Aufbau der Verbindung mit dem Server,
      - das Senden und Empfangen von Daten,
      - sowie das Beenden der Verbindung
