@@ -2,7 +2,7 @@
 
 Beispiel für die Verwendung von socket:
 
-    Das Serverbeispiel zeigt die Möglichkeit
+    Das Serverbeispiel (server_beispiel.py) zeigt die Möglichkeit
      - empfangene Daten zurück zu senden
      - Die Verbindung durch das Senden des Stings AB zu beenden
        der Server läuft weiter und wartet auf die nächste Verbindung
@@ -13,7 +13,7 @@ Beispiel für die Verwendung von socket:
 
 
 
-    Das Clientbeispiel zeigt die Möglichkeit
+    Das Clientbeispiel  (client_beispiel.py)zeigt die Möglichkeit
      - zum Aufbau der Verbindung mit dem Server,
      - das Senden und Empfangen von Daten,
      - sowie das Beenden der Verbindung
