@@ -4,6 +4,8 @@
 '''
 
     Funktion clientprogramm
+        - sendet Schlüsselwörten wie DATEN um Daten anzufordern oder AB um die Verbindung zubeenden
+
 
 '''
 

@@ -64,7 +64,7 @@ def server_starten():
                 # Daten senden wenn danach gefragt wird
                 if anfrage[0:5] =='DATEN':
                     schnittstelle.sendall(str.encode(" Hier sind die Daten"))
-                    
+
                 # Abruch wenn AB gesendet wird vom client
                 if anfrage[0:2] == 'AB':
                     print("Verbindung wurde durch die Aufforderung des Client geschlosssen!")
