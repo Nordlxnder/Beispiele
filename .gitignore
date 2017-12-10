@@ -1,4 +1,4 @@
 .idea/
 server.py
 client.py
-./Dateiname_in_utf-8_konvertieren/dateien/
+./Dateiname_in_utf-8_konvertieren/dateien/*
