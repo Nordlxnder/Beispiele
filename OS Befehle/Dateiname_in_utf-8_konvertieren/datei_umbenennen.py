@@ -1,13 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 import os
 
-pfad="/home/golfo/PycharmProjects/dateiname_in_utf-8_konvertieren/dateien/"
+'''
+Dieses Programm ändert die Zeichen einer Datei die mit Raute Fragezeichen 
+dargestellt werden
 
+Beispiel:
+
+01_Testdatei_�.txt  oder '01_Testdatei_'$'\372''.txt'
+
+'''
+
+pfad=str(os.path.abspath(os.curdir) + "/dateien/")
 def dateien_einlesen():
     dateien = os.listdir(pfad)
-    print(dateien)
+    # print(dateien)
     return dateien
 
 def umbenennen(dateien):
@@ -19,12 +29,10 @@ def umbenennen(dateien):
     # print(dateien_neu)
     pass
 
-
 def hauptprogramm():
     dateien=dateien_einlesen()
     umbenennen(dateien)
     pass
-
 
 if __name__== "__main__":
     hauptprogramm()
